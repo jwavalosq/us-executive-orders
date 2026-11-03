@@ -58,3 +58,7 @@ American Presidency Project, University of California, Santa Barbara, executive 
 ## Data vintage
 
 Through October 22, 2026, the latest order in the sources at build time, EO 14438. The 2026 figures are partial, not a full year total.
+
+## Full texts in this repo
+
+The 1,549 downloaded Federal Register texts ship in this repo as one archive, data/raw/fr_texts.zip, to keep the file count manageable for publishing. Unzip it into data/raw/ to get the data/raw/fr_texts/ folder with one text file per order. The word counts in the dataset come from those files, and scripts/fetch_fr_texts.py can also re-download them individually.

@@ -40,7 +40,7 @@ Other cuts:
 - data/raw/PROVENANCE.md: every source, with URL and what was taken from it.
 - notebooks/00 to 06: seven executed notebooks, zero to hero, from coverage to search.
 - charts/: 18 charts, also copied into docs/charts for the story site.
-- docs/index.html: a plain word story site you can open in a browser, no server needed.
+- docs/index.html: a plain word story site you can open in a browser, no server needed. Live version: https://jwavalosq.github.io/us-executive-orders/
 - scripts/: download script, full text fetch script, build script, notebook builder, notebook runner, and this docs generator. Rerun them to rebuild.
 
 ## How to use the notebooks

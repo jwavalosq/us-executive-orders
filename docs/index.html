@@ -15,25 +15,28 @@ figcaption { font-size: 0.9em; color: #555; }
 </head>
 <body>
 <h1>US Executive Orders: The Complete Analytics Project</h1>
-<p>A beginner friendly tour of presidential orders, from 1791 to 2026, with the dataset itself as the main deliverable. An executive order is a signed instruction from the President to the federal government. It has the force of law until a later President, Congress, or a court changes it.</p>
-<div class="callout"><strong>Read this first.</strong> This dataset has 10,879 rows. It is row level complete from Herbert Hoover onward. Before Hoover, it is a large titled sample, not a complete row list. Published historical totals are much higher for early Presidents like Woodrow Wilson and Calvin Coolidge, because many routine early orders do not have an individual titled entry in the public listing used here. No rows were invented to fill that gap.</div>
-<h2>Headline findings</h2>
+<p><strong>I started with a question that sounded simple and turned out not to be. What has every President actually ordered, in writing, since George Washington, and how has that power changed over 235 years?</strong></p>
+<p>I had seen plenty of headlines about executive orders, usually about one order at a time. I had never seen the whole record in one place, as rows I could count, sort, and search. So I built it myself: every executive order I could put in a row level dataset, from 1791 to 2026, with the dataset itself as the main deliverable.</p>
+<p>An executive order is a signed instruction from the President to the federal government. It has the force of law until a later President, Congress, or a court changes it. Presidents have used this tool since Washington, but they have not used it the same way in every era. Early orders were often short, routine paperwork. Later orders are more often about national policy.</p>
+<div class="callout"><strong>Read this first.</strong> This dataset has 10,879 rows, from January 22, 1791 to October 22, 2026. It is row level complete from Herbert Hoover onward. Before Hoover, it is a large titled sample, not a complete row list. Published historical totals are much higher for early Presidents like Woodrow Wilson and Calvin Coolidge, because many routine early orders do not have an individual titled entry in the public listing I used. I invented no rows to fill that gap.</div>
+<h2>What I found</h2>
 <ul>
 <li>Most rows by President: Franklin D. Roosevelt (3,725), Herbert Hoover (1,004), Harry S. Truman (907).</li>
-<li>Busiest year: 1933 with 657 orders. Busiest decade: the 1930s.</li>
-<li>Largest keyword category: Other or General (3,612 orders).</li>
-<li>Median title length: 10 words. Full texts downloaded for 1,549 recent orders.</li>
+<li>Busiest year: 1933 with 657 orders. Busiest decade: the 1930s, with 3,313 orders.</li>
+<li>Largest keyword category: Other or General (3,612 orders), followed by Land and Public Lands (1,714).</li>
+<li>Median title length: 10 words. Full texts downloaded for 1,549 recent orders, median length 974 words.</li>
 <li>The Federal Register series EO 12890 to EO 14438 has zero missing numbers.</li>
 <li>Keyword categories are a blunt first pass. On a hard hand checked sample of 30 orders, they agreed with a human reading on 15, or 50 percent. Use them for broad shares, not single order labels.</li>
 </ul>
+<p>What those numbers mean to me: the modern image of the executive order as a big policy weapon is only half the story. For much of American history, orders were mostly small administrative acts, and the Roosevelt years are an outlier, not the norm. Once you see that one president accounts for more than a third of the rows, you stop treating every presidency as the same.</p>
 <h2>The story in chapters</h2>
-<p><strong>Chapter 1, coverage.</strong> Orders were not numbered neatly from the start. Orders before 1862 are unnumbered, numbering was applied back to 1862, and a uniform system only settled in the early 1900s, with Federal Register publication from 1936.</p>
+<p><strong>Chapter 1, coverage.</strong> I checked coverage before I counted anything. Orders were not numbered neatly from the start. Orders before 1862 are unnumbered, numbering was applied back to 1862, and a uniform system only settled in the early 1900s, with Federal Register publication from 1936.</p>
 <p><strong>Chapter 2, the dataset.</strong> One row per order in the dataset, with president, party, term, era, date, title, category, disposition notes, source, and text availability. The full file is <a href="https://github.com/jwavalosq/us-executive-orders/blob/main/data/processed/executive_orders.csv">data/processed/executive_orders.csv</a> in the project repo.</p>
 <p><strong>Chapter 3, counts.</strong> The 1930s dominate because Roosevelt and Hoover issued thousands of short administrative orders. Modern Presidents sign far fewer, roughly 150 to 400 per term.</p>
-<p><strong>Chapter 4, topics.</strong> Keyword rules are transparent but blunt. Topic modeling finds piles of titles that share words, like land withdrawals, civil service rules, and retirement exemptions. Both methods work from titles, not full orders.</p>
-<p><strong>Chapter 5, history.</strong> Order volume rises in crises and first years: the New Deal, World War II, the civil rights era, post-9/11, the pandemic, and the start of the Trump second term. Timing is not proof of cause.</p>
+<p><strong>Chapter 4, topics.</strong> My keyword rules are transparent but blunt. Topic modeling finds piles of titles that share words, like land withdrawals, civil service rules, and retirement exemptions. Both methods work from titles, not full orders.</p>
+<p><strong>Chapter 5, history.</strong> Order volume rises in crises and first years: the New Deal, World War II, the civil rights era, post-9/11, the pandemic, and the start of the Trump second term. Timing is not proof of cause, and I do not claim it is.</p>
 <p><strong>Chapter 6, language.</strong> Early titles talk about land and withdrawals. Later titles talk about federal, national, and security. Title length stays modest, while full texts vary from a few hundred words to many thousands.</p>
-<p><strong>Chapter 7, search.</strong> The project includes a working word based search, using TF-IDF and cosine similarity. No language model was trained or used here. The notebook explains how embeddings, a vector store, and retrieval augmented generation would extend this search in the future.</p>
+<p><strong>Chapter 7, search.</strong> I built a working word based search, using TF-IDF and cosine similarity. No language model was trained or used here. The notebook explains how embeddings, a vector store, and retrieval augmented generation would extend this search in the future.</p>
 <h2>Charts</h2>
 <figure><img src="charts/00_coverage_by_era.png" alt="00_coverage_by_era.png"><figcaption>00_coverage_by_era.png</figcaption></figure>
 <figure><img src="charts/01_orders_by_president.png" alt="01_orders_by_president.png"><figcaption>01_orders_by_president.png</figcaption></figure>
@@ -58,8 +61,9 @@ figcaption { font-size: 0.9em; color: #555; }
 <li>Pre-1929 rows are incomplete. See the coverage notebook for the per President gap table.</li>
 <li>Full text is recent only. Older orders are title only here.</li>
 <li>Disposition notes exist only for 1,137 rows with Federal Register notes.</li>
+<li>9,989 rows have an EO number. The rest are unnumbered early orders, which is historically correct, not a data error.</li>
 <li>Data vintage: through October 22, 2026, EO 14438. The 2026 total is partial.</li>
 </ul>
-<p>Repo: <a href="https://github.com/jwavalosq/us-executive-orders">github.com/jwavalosq/us-executive-orders</a>. This project is published and live.</p>
+<p>Repo: <a href="https://github.com/jwavalosq/us-executive-orders">github.com/jwavalosq/us-executive-orders</a>. I built this in 7 notebooks with 18 charts, from public sources listed in the repo. If a number here disagrees with a source you trust, the notebooks show exactly where each number came from so you can check it.</p>
 </body>
 </html>
